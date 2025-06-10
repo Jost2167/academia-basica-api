@@ -6,7 +6,7 @@ public class Curso
     public string Nombre { get; set; }
     public string Descripcion { get; set; }
     public int ProfesorId { get; set; }
-    
-    public List<Estudiante> Estudiantes { get; set; }
+
+    public ICollection<Estudiante> Estudiantes { get; set; } = new HashSet<Estudiante>();
     public Profesor Profesor { get; set; }
 }

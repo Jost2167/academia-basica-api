@@ -4,5 +4,5 @@ public class Estudiante: Persona
 {
     public string GradoAcademico { get; set; }
     
-    public List<Curso> Cursos { get; set; }
+    public ICollection<Curso> Cursos { get; set; } = new HashSet<Curso>();
 }
