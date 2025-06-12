@@ -1,4 +1,6 @@
 using AcademiaWebAPI.DBContext;
+using AcademiaWebAPI.Repositories;
+using AcademiaWebAPI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<AcademiaWebAPIDBContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddTransient<IProfesoresRepository, ProfesoresRepository>();
 
 var app = builder.Build();
 

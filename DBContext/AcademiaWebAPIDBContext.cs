@@ -18,6 +18,13 @@ public class AcademiaWebAPIDBContext: DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // Relacion Curso - Profesor
+        modelBuilder.Entity<Curso>()
+            .HasOne(c => c.Profesor)
+            .WithMany(p => p.Cursos)
+            .HasForeignKey(c => c.ProfesorId)
+            .OnDelete(DeleteBehavior.SetNull);
+        
         // Define la estrategia de herencia como Table-Per-Hierarchy (TPH).
         modelBuilder.Entity<Persona>().UseTphMappingStrategy();
 

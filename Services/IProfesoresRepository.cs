@@ -1,8 +1,9 @@
+using AcademiaWebAPI.DTOs.DTOsResponse;
 using AcademiaWebAPI.Models;
 
 namespace AcademiaWebAPI.Services;
 
 public interface IProfesoresRepository
 {
-    List<Profesor> ObtenerTodos();
+    Task<List<ProfesorResponseDTO>> ObtenerTodos();
 }
