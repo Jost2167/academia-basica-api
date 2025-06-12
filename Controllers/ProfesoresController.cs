@@ -1,5 +1,4 @@
 using AcademiaWebAPI.DTOs.DTOsResponse;
-using AcademiaWebAPI.Models;
 using AcademiaWebAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,12 +16,24 @@ public class ProfesoresController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Profesor>>> ObtenerTodos()
+    public async Task<ActionResult<IEnumerable<ProfesorResponseDto>>> ObtenerTodos()
     {
-        List<ProfesorResponseDTO> profesoresDTO = new List<ProfesorResponseDTO>();
-        profesoresDTO = await _profesoresRepository.ObtenerTodos();
+        List<ProfesorResponseDto> profesoresDto = await _profesoresRepository.ObtenerTodos(); 
         
-        return Ok(profesoresDTO);
+        return Ok(profesoresDto);
+    }
+
+    [HttpGet("{profesorId}")]
+    public async Task<ActionResult<ProfesorResponseDto>> Obtener(int profesorId)
+    {
+        ProfesorResponseDto? profesorDto = await _profesoresRepository.Obtener(profesorId);
+
+        if (profesorDto is null)
+        {
+            return NotFound($"No se encontró el profesor con ID {profesorId}");
+        }
+        
+        return Ok(profesorDto);
     }
     
     

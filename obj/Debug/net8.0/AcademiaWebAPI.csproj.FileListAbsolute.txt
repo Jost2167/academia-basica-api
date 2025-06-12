@@ -142,3 +142,4 @@
 /home/jstiven/Documentos/Programacion/Csharp/AcademiaWebAPI/obj/Debug/net8.0/AcademiaWebAPI.pdb
 /home/jstiven/Documentos/Programacion/Csharp/AcademiaWebAPI/obj/Debug/net8.0/AcademiaWebAPI.genruntimeconfig.cache
 /home/jstiven/Documentos/Programacion/Csharp/AcademiaWebAPI/obj/Debug/net8.0/ref/AcademiaWebAPI.dll
+/home/jstiven/Documentos/Programacion/Csharp/AcademiaWebAPI/obj/Debug/net8.0/AcademiaWebAPI.sourcelink.json
