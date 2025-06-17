@@ -62,6 +62,22 @@ public class ProfesoresController : ControllerBase
         }
         
         return Ok(profesorResponseDto);
-    } 
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> Eliminar(int id)
+    {
+        var eliminado = await _profesoresRepository.Eliminar(id);
+
+        if (!eliminado)
+        {
+            // Devuelve un resultado 404 (No encontrado) si no existe un profesor con el ID proporcionado,
+            // es decir que no se pudo eliminar.
+            return NotFound($"No se encontró el profesor con ID {id}");
+        }
+        
+        // Resultado 204 (Exitoso pero no devuelve nada)
+        return NoContent();
+    }   
     
 }

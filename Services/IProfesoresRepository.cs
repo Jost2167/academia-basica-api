@@ -10,5 +10,6 @@ public interface IProfesoresRepository
     Task<ProfesorResponseDto?> Obtener(int id);
     Task<ProfesorResponseDto> Crear(ProfesorRequestDto profesorRequestDto);
     Task<ProfesorResponseDto> Actualizar(int id, ProfesorRequestDto profesorRequestDto);
+    Task<bool> Eliminar(int id);
 
 }

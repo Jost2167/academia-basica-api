@@ -111,4 +111,16 @@ public class ProfesoresRepository: IProfesoresRepository
             }).ToList()
         };
     }
+
+    public async Task<bool> Eliminar(int id)
+    {
+        var profesor = await _context.Profesores.FindAsync(id);
+
+        if (profesor is null) return false;
+
+        _context.Profesores.Remove(profesor);
+        await _context.SaveChangesAsync();
+
+        return true;
+    }
 }
