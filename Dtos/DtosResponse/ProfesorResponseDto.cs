@@ -7,5 +7,5 @@ public class ProfesorResponseDto
     public string Apellido { get; set; }
     public string Telefono { get; set; }
     public string Titulo { get; set; }
-    public List<CursoResponseDto> Cursos { get; set; }
+    public List<CursoResponseDto> Cursos { get; set; } = new List<CursoResponseDto>();
 }

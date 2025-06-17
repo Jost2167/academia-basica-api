@@ -1,3 +1,4 @@
+using AcademiaWebAPI.Dtos.DtosRequest;
 using AcademiaWebAPI.DTOs.DTOsResponse;
 
 
@@ -7,4 +8,6 @@ public interface IProfesoresRepository
 {
     Task<List<ProfesorResponseDto>> ObtenerTodos();
     Task<ProfesorResponseDto?> Obtener(int id);
+    Task<ProfesorResponseDto> Crear(ProfesorRequestDto profesorRequestDto);
+
 }

@@ -33,8 +33,4 @@
       <None Remove="Repositories\ProfesoresRepository\**" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Dtos\DtosRequest\" />
-    </ItemGroup>
-
 </Project>

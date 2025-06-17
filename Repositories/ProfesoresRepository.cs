@@ -1,5 +1,7 @@
 using AcademiaWebAPI.DBContext;
+using AcademiaWebAPI.Dtos.DtosRequest;
 using AcademiaWebAPI.DTOs.DTOsResponse;
+using AcademiaWebAPI.Models;
 using AcademiaWebAPI.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -53,5 +55,29 @@ public class ProfesoresRepository: IProfesoresRepository
                     Descripcion = c.Descripcion
                 }).ToList()
             }).FirstOrDefaultAsync();
+    }
+
+    public async Task<ProfesorResponseDto> Crear(ProfesorRequestDto profesorRequestDto)
+    {
+        var profesor = new Profesor()
+        {
+            Nombre = profesorRequestDto.Nombre,
+            Apellido = profesorRequestDto.Apellido,
+            Telefono = profesorRequestDto.Telefono,
+            Titulo = profesorRequestDto.Titulo
+        };
+        
+        _context.Profesores.Add(profesor);
+        // Devuelve el id al guardar profesor
+        await _context.SaveChangesAsync();
+
+        return new ProfesorResponseDto()
+        {
+            Id = profesor.Id,
+            Nombre = profesor.Nombre,
+            Apellido = profesor.Apellido,
+            Telefono = profesor.Telefono,
+            Titulo = profesor.Titulo
+        };
     }
 }
