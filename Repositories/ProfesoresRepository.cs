@@ -80,4 +80,35 @@ public class ProfesoresRepository: IProfesoresRepository
             Titulo = profesor.Titulo
         };
     }
+
+    public async Task<ProfesorResponseDto> Actualizar(int id, ProfesorRequestDto profesorRequestDto)
+    {
+        var profesor = await _context.Profesores
+            .Include(p=>p.Cursos)
+            .FirstOrDefaultAsync(p=>p.Id == id);
+
+        if (profesor == null) return null;
+        
+        profesor.Nombre = profesorRequestDto.Nombre;
+        profesor.Apellido = profesorRequestDto.Apellido;
+        profesor.Telefono = profesorRequestDto.Telefono;
+        profesor.Titulo = profesorRequestDto.Titulo;
+        
+        await _context.SaveChangesAsync();
+
+        return new ProfesorResponseDto()
+        {
+            Id = profesor.Id,
+            Nombre = profesor.Nombre,
+            Apellido = profesor.Apellido,
+            Telefono = profesor.Telefono,
+            Titulo = profesor.Titulo,
+            Cursos = profesor.Cursos.Select(c => new CursoResponseDto()
+            {
+                Id = c.Id,
+                Nombre = c.Nombre,
+                Descripcion = c.Descripcion
+            }).ToList()
+        };
+    }
 }
